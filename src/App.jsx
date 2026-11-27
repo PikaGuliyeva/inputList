@@ -1,5 +1,9 @@
+
 import { useState } from "react";
 import "./App.css";
+
+import StudentForm from "./components/StudentForm";
+import StudentList from "./components/StudentList";
 
 function App() {
   const [input, setInput] = useState("");
@@ -19,25 +23,17 @@ function App() {
   return (
     <div className="container">
       <h1>Telebe siyahisi</h1>
-      <p>Ümumi telebe sayı: {inputList.length}</p>
-      <input
-        type="text"
-        placeholder="Telebenin adi"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={addInput} type="button">
-        Elave et
-      </button>
 
-      <ul>
-        {inputList.map((item, index) => (
-          <li key={index}>
-            {item}
-            <button onClick={() => deleteInput(index)}>Sil</button>
-          </li>
-        ))}
-      </ul>
+      <StudentForm
+        input={input}
+        setInput={setInput}
+        addInput={addInput}
+      />
+
+      <StudentList
+        inputList={inputList}
+        deleteInput={deleteInput}
+      />
     </div>
   );
 }
